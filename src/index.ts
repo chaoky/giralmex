@@ -3,6 +3,8 @@ import axios from "axios";
 import { v4 } from "uuid";
 import secrets from "../secrets.json";
 
+console.log("starting");
+
 const t: any = new twit({
   ...secrets,
   timeout_ms: 60 * 1000, // optional HTTP request timeout to apply to all requests.
@@ -15,9 +17,12 @@ const stream = t.stream("statuses/filter", {
   follow: giraId,
 });
 
+console.log("working");
+
 stream.on("tweet", async (tweet: any) => {
   if (tweet.user.id_str == giraId) {
     if (tweet.text != "") {
+      console.log(tweet);
       let mexicano = await axios({
         method: "POST",
         url: "https://api.cognitive.microsofttranslator.com/translate",
