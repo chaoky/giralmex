@@ -29,6 +29,8 @@ stream.on("tweet", async (tweet: any) => {
         params: {
           "api-version": "3.0",
           to: ["es"],
+          profanityAction: "NoAction",
+          suggestedFrom: "pt",
         },
         headers: {
           "Ocp-Apim-Subscription-Key": "e4a35a78334048e99820733b7aa62bd8",
