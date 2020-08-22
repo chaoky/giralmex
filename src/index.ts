@@ -28,7 +28,7 @@ stream.on("tweet", async (tweet: any) => {
         url: "https://api.cognitive.microsofttranslator.com/translate",
         params: {
           "api-version": "3.0",
-          to: ["es"],
+          to: "es",
           profanityAction: "NoAction",
           suggestedFrom: "pt",
         },
@@ -40,13 +40,13 @@ stream.on("tweet", async (tweet: any) => {
         },
         data: [
           {
-            text: tweet.text.replace(/@\w*/g, ""),
+            text: tweet.text.replace(/@\w*/g, "").replace(/\n/g, "newline"),
           },
         ],
       });
 
       t.post("statuses/update", {
-        status: mexicano.data[0].translations[0].text,
+        status: mexicano.data[0].translations[0].text.replace(/newline/g, "\n"),
         attachment_url: `https://twitter.com/${tweet.user.screen_name}/status/${tweet.id_str}`,
       });
     }
