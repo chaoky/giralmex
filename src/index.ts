@@ -54,23 +54,28 @@ streamGira.on("tweet", async (tweet: any) => {
 
 ////////////////////////KPOP
 
-const livia: any = new twit({
-  ...secrets.bot,
-  ...secrets.livia,
-  timeout_ms: 60 * 1000, // optional HTTP request timeout to apply to all requests.
-  strictSSL: true, // optional - requires SSL certificates to be valid.
-});
+// const livia: any = new twit({
+//   ...secrets.bot,
+//   ...secrets.livia,
+//   timeout_ms: 60 * 1000, // optional HTTP request timeout to apply to all requests.
+//   strictSSL: true, // optional - requires SSL certificates to be valid.
+// });
 
-const streamLivia = livia.stream("statuses/filter", {
-  track: ["@minatozaki_lily"],
-});
+// const streamLivia = livia.stream("statuses/filter", {
+//   track: ["@giralmex"],
+// });
 
-streamLivia.on("tweet", ({ text }: { text: string }) => {
-  const fancam = text.match(/https:\/\/t.co\/\w*/g);
-  livia.post("statuses/update", {
-    status: fancam,
-    attachment_url: fancam,
-  });
-});
+// streamLivia.on("tweet", async (t: any) => {
+//   console.log("nice");
+//   const parent = await livia.get("statuses/show", {
+//     id: t.in_reply_to_status_id_str,
+//   });
+//   const fancam = parent.data.text.match(/https:\/\/t.co\/\w*/g);
+//   console.log(fancam);
+//   livia.post("statuses/update", {
+//     in_reply_to_status_id: t.id_str,
+//     status: `@${t.user.screen_name} link: ${fancam} \n ${fancam}`,
+//   });
+// });
 
 console.log("working");
